@@ -24,9 +24,14 @@ TEST(TVector, throws_when_create_vector_with_negative_startindex)
 
 TEST(TVector, can_create_copied_vector)
 {
-  TVector<int> v(10);
-
-  ASSERT_NO_THROW(TVector<int> v1(v));
+	TVector<int> v(5);
+	v[0] = 1;
+	v[1] = 2;
+	v[2] = 3;
+	v[3] = 5;
+	v[4] = 4;
+	TVector<int> v1(v);
+    EXPECT_EQ(v1, v);
 }
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
@@ -178,7 +183,13 @@ TEST(TVector, can_add_scalar_to_vector)
 	v[3] = 5;
 	v[4] = 4;
 	int a = 10;
-	ASSERT_NO_THROW(v + a);
+	TVector<int> m(5);
+	m[0] = 11;
+	m[1] = 12;
+	m[2] = 13;
+	m[3] = 15;
+	m[4] = 14;
+	EXPECT_EQ(m,v + a);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
@@ -190,7 +201,13 @@ TEST(TVector, can_subtract_scalar_from_vector)
 	v[3] = 5;
 	v[4] = 4;
 	int a = 10;
-	ASSERT_NO_THROW(v - a);
+	TVector<int> m(5);
+	m[0] = -9;
+	m[1] = -8;
+	m[2] = -7;
+	m[3] = -5;
+	m[4] = -6;
+	EXPECT_EQ(m, v - a);
 }
 
 TEST(TVector, can_multiply_scalar_by_vector)
@@ -202,7 +219,13 @@ TEST(TVector, can_multiply_scalar_by_vector)
 	v[3] = 5;
 	v[4] = 4;
 	int a = 10;
-	ASSERT_NO_THROW(v * a);
+	TVector<int> m(5);
+	m[0] = 10;
+	m[1] = 20;
+	m[2] = 30;
+	m[3] = 50;
+	m[4] = 40;
+	EXPECT_EQ(m, v * a);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
@@ -219,24 +242,19 @@ TEST(TVector, can_add_vectors_with_equal_size)
 	a[2] = 3;
 	a[3] = 5;
 	a[4] = 4;
-	ASSERT_NO_THROW(a + v);
+	TVector<int> m(5);
+	m[0] = 2;
+	m[1] = 4;
+	m[2] = 6;
+	m[3] = 10;
+	m[4] = 8;
+	EXPECT_EQ(m, v + a);
 }
 
 TEST(TVector, cant_add_vectors_with_not_equal_size)
 {
 	TVector<int> v(5);
-	v[0] = 1;
-	v[1] = 2;
-	v[2] = 3;
-	v[3] = 5;
-	v[4] = 4;
 	TVector<int> a(6);
-	a[0] = 1;
-	a[1] = 2;
-	a[2] = 3;
-	a[3] = 5;
-	a[4] = 4;
-	a[5] = 7;
 	ASSERT_ANY_THROW(a + v);
 }
 
@@ -254,24 +272,19 @@ TEST(TVector, can_subtract_vectors_with_equal_size)
 	a[2] = 3;
 	a[3] = 5;
 	a[4] = 4;
-	ASSERT_NO_THROW(a - v);
+	TVector<int> m(5);
+	m[0] = 0;
+	m[1] = 0;
+	m[2] = 0;
+	m[3] = 0;
+	m[4] = 0;
+	EXPECT_EQ(m, v - a);
 }
 
 TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 {
 	TVector<int> v(5);
-	v[0] = 1;
-	v[1] = 2;
-	v[2] = 3;
-	v[3] = 5;
-	v[4] = 4;
 	TVector<int> a(6);
-	a[0] = 1;
-	a[1] = 2;
-	a[2] = 3;
-	a[3] = 5;
-	a[4] = 4;
-	a[5] = 7;
 	ASSERT_ANY_THROW(a - v);
 }
 
@@ -289,25 +302,15 @@ TEST(TVector, can_multiply_vectors_with_equal_size)
 	a[2] = 3;
 	a[3] = 5;
 	a[4] = 4;
-	ASSERT_NO_THROW(a * v);
+	int m = 55;
+	EXPECT_EQ(m, v * a);
  
 }
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 {
 	TVector<int> v(5);
-	v[0] = 1;
-	v[1] = 2;
-	v[2] = 3;
-	v[3] = 5;
-	v[4] = 4;
 	TVector<int> a(6);
-	a[0] = 1;
-	a[1] = 2;
-	a[2] = 3;
-	a[3] = 5;
-	a[4] = 4;
-	a[5] = 7;
 	ASSERT_ANY_THROW(a * v);
 }
 
